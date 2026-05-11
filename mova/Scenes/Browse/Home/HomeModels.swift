@@ -13,7 +13,7 @@ enum Home {
         }
         
         struct ViewModel {
-            struct DisplayedMovie {
+            struct DisplayedMovie: Hashable, Sendable {
                 let id: Int
                 let title: String
                 let imageUrl: URL?
@@ -25,6 +25,17 @@ enum Home {
             let newReleases: [DisplayedMovie]
         }
     }
+}
+
+nonisolated enum Section: Int, CaseIterable, Hashable, Sendable {
+    case hero
+    case top10
+    case newReleases
+}
+
+nonisolated enum Item: Hashable, Sendable {
+    case hero(Home.FetchMovies.ViewModel.DisplayedMovie)
+    case movie(Home.FetchMovies.ViewModel.DisplayedMovie)
 }
 
 
